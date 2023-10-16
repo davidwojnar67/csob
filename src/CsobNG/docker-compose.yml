@@ -1,0 +1,40 @@
+version: '3.4'
+
+services:
+  emailsapi:
+    image: ${DOCKER_REGISTRY-}emailsapi
+    build:
+      context: .
+      dockerfile: EmailsAPI/Dockerfile
+
+  clientapi:
+    image: ${DOCKER_REGISTRY-}clientapi
+    build:
+      context: .
+      dockerfile: ClientAPI/Dockerfile
+
+
+  loanrequestapi:
+    image: ${DOCKER_REGISTRY-}loanrequestapi
+    build:
+      context: .
+      dockerfile: LoanRequestAPI/Dockerfile
+
+
+  admin:
+    image: ${DOCKER_REGISTRY-}admin
+    build:
+      context: .
+      dockerfile: Admin/Dockerfile
+
+
+  db1:
+    image: mcr.microsoft.com/mssql/server:2022-preview-ubuntu-22.04
+    environment:
+        SA_PASSWORD: "Password123"
+        ACCEPT_EULA: "Y"
+        MSSQL_AGENT_ENABLED: "true"
+    ports:
+        - "1435:1433"
+    container_name: db1
+    hostname: db1

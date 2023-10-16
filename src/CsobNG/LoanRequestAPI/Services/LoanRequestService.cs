@@ -58,7 +58,7 @@ namespace LoanRequestAPI.Services
         {
             HttpClient httpClient = new HttpClient();
 
-            var url = "http://localhost:5208";
+            var url = "http://ClientAPI_1";
 
             Client client = await httpClient.GetFromJsonAsync<Client>($"{url}/Client/ById/{clientId}");
 
@@ -71,7 +71,7 @@ namespace LoanRequestAPI.Services
 
             var json = JsonSerializer.Serialize(email);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
-            var url = "http://localhost:5032/Email";
+            var url = "http://EmailsAPI/Email";
             using var httpClient = new HttpClient();
 
             var response = await httpClient.PostAsync(url, data);
